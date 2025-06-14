@@ -1,0 +1,604 @@
+/* --- 1. General & Body --- */
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap');
+
+body {
+    font-family: 'Sarabun', sans-serif;
+    background-color: #f8f9fa; /* พื้นหลังสีเทาอ่อน */
+    color: #495057;
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* --- 2. Header Bar --- */
+.header-bar {
+    background-color: #2c3e50; /* สีน้ำเงินเข้ม */
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-title {
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.admin-login-button {
+    background-color: #ffffff;
+    color: #2c3e50;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.admin-login-button:hover {
+    background-color: #e9ecef;
+}
+
+/* --- 3. Main Form Container --- */
+.container {
+    max-width: 900px;
+    margin: 2.5rem auto; /* เว้นระยะจาก Header */
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* --- 4. Form Elements (Fieldset, Legend, Input) --- */
+fieldset {
+    border: 1px solid #dee2e6;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+}
+
+legend {
+    font-weight: bold;
+    font-size: 1.25em;
+    color: #343a40;
+    padding: 0 0.8rem;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #495057;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+.checkbox-group, .radio-group {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+}
+.checkbox-group label, .radio-group label {
+    font-weight: normal;
+    margin-left: 0.7rem;
+}
+input[type="checkbox"], input[type="radio"] {
+    margin-top: 0.3rem;
+}
+
+/* --- 5. Buttons --- */
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* --- 6. Popups (Success & Login) --- */
+.popup-container {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+.popup-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+}
+.popup-content h2 { color: #4CAF50; }
+.popup-content.error h2 { color: #f44336; }
+
+.error-msg {
+    color: #f44336;
+    font-size: 0.9em;
+    margin-top: 10px;
+    height: 1.2em;
+}
+
+/* --- 7. Responsive Design --- */
+@media (max-width: 768px) {
+    .header-bar {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+    .container {
+        margin: 1rem auto;
+        padding: 1.5rem;
+    }
+}
+
+/* =================================================== */
+/* === ดีไซน์ใหม่สำหรับหน้า Admin และ Pagination      === */
+/* =================================================== */
+
+/* --- ส่วนหัวในหน้า Admin --- */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.admin-header h2 {
+    margin: 0;
+    color: #343a40;
+    text-align: left; /* จัดชิดซ้าย */
+}
+
+.logout-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #dc3545; /* สีแดง */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+}
+
+/* --- ส่วนปุ่มเลือกหน้า (Pagination) --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.page-link {
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    padding: 0.6rem 0.9rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.page-link:hover {
+    background-color: #e9ecef;
+    color: #0056b3;
+}
+
+.page-link.active {
+    z-index: 1;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.page-link.disabled {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+
+.page-link-ellipsis {
+    padding: 0.6rem 0.9rem;
+    color: #6c757d;
+}
+
+/* --- CSS ที่จำเป็นสำหรับ Layout 3 นี้ --- */
+
+.vertical-input-group {
+    display: flex;
+    flex-direction: column; /* จัดเรียงจากบนลงล่าง */
+    align-items: flex-start;
+    gap: 0.75rem; /* ระยะห่างระหว่างบรรทัดข้อความกับบรรทัดช่องกรอก */
+    padding-bottom: 1rem;
+}
+
+.main-label-line {
+    display: flex;
+    align-items: flex-start;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: 20px; /* ย่อหน้าเข้ามาให้สวยงาม */
+    width: 65%;
+    box-sizing: border-box;
+}
+
+.input-line .sub-label {
+    font-weight: normal;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+/* คลาสที่ทำให้ช่องกรอกสั้นลง */
+.inline-input {
+    width: 50px;
+}
+.inline-input-small {
+    width: 50px;
+}
+
+/* --- CSS เพิ่มเติมสำหรับ Layout ส่วนที่ 5 --- */
+
+/* เส้นคั่นระหว่างข้อ */
+.section-divider {
+    border: 0;
+    border-top: 1px solid #e9ecef;
+    margin: 1.5rem 0;
+}
+
+/* ทำให้กลุ่ม radio button ที่ย่อหน้าเข้ามามีการขึ้นบรรทัดใหม่ได้ */
+.sub-options-line {
+    flex-wrap: wrap;
+    width: 50%;
+}
+.sub-options-line .radio-group {
+    margin-right: 5rem; /* เพิ่มระยะห่างระหว่าง radio button */
+}
+
+/* =================================================== */
+/* ===  ดีไซน์สำหรับบรรทัดที่ซับซ้อนและปรับขนาดได้ (ใหม่) === */
+/* =================================================== */
+
+.complex-line {
+    display: flex;
+    justify-content: space-between; /* ดันให้กลุ่มข้อความกับกลุ่ม input แยกจากกัน */
+    align-items: center;
+    flex-wrap: wrap; /* ทำให้ขึ้นบรรทัดใหม่ได้บนจอเล็ก */
+    gap: 1rem;
+}
+
+.complex-label-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1; /* ทำให้กลุ่มข้อความยืดหยุ่นได้ */
+    min-width: 300px; /* กำหนดความกว้างขั้นต่ำ */
+}
+
+.complex-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0; /* ไม่ให้กลุ่ม input ถูกบีบ */
+}
+
+/* ❤️️ Class พิเศษสำหรับช่องกรอกที่คุณต้องการปรับขนาดเอง ❤️️ */
+.adjustable-input {
+    width: 120px; /* <<< คุณภาคินสามารถเข้ามาแก้ตัวเลขตรงนี้เพื่อปรับขนาดได้เลยครับ */
+}
+
+/* =================================================== */
+/* ===     ชุดเครื่องมือปรับขนาด Input (ใหม่)        === */
+/* =================================================== */
+
+/* ❤️️ หากขนาดไม่ถูกใจ คุณสามารถเข้ามาแก้ตัวเลข width ตรงนี้ได้เลย ❤️️ */
+
+/* ขนาดเล็กพิเศษ (Extra Small) */
+.input-xs {
+    width: 80px !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+/* ขนาดเล็ก (Small) */
+.input-sm {
+    width: 120px !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+/* ขนาดกลาง (Medium) */
+.input-md {
+    width: 250px !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+/* =================================================== */
+/* ===   ดีไซน์สำหรับส่วนอัปโหลดไฟล์ (ส่วนที่ 7) (ใหม่)  === */
+/* =================================================== */
+
+.file-upload-group {
+    display: flex;         /* ใช้ Flexbox เพื่อจัดเรียง */
+    align-items: center;   /* จัดให้ Checkbox, ข้อความ, ปุ่ม อยู่กึ่งกลางแนวตั้ง */
+    gap: 1rem;             /* สร้างระยะห่างระหว่างแต่ละส่วน (Checkbox, ข้อความ, ปุ่ม) */
+    padding: 0.8rem 0.5rem;  /* เพิ่มช่องว่างบน-ล่างให้แต่ละข้อ */
+    border-bottom: 1px solid #e9ecef; /* เพิ่มเส้นคั่นบางๆ ระหว่างข้อ */
+}
+
+/* ทำให้ข้อสุดท้ายไม่มีเส้นคั่น */
+.file-upload-group:last-child {
+    border-bottom: none;
+}
+
+/* ทำให้ข้อความ Label ยืดขยายให้เต็มพื้นที่ตรงกลาง
+   ซึ่งจะดันให้ปุ่มอัปโหลดไปอยู่ชิดขวาสุดโดยอัตโนมัติ
+*/
+.file-upload-group label {
+    flex-grow: 1;
+    font-weight: normal; /* ทำให้ข้อความไม่เป็นตัวหนา */
+    margin: 0;
+}
+
+/* ป้องกันไม่ให้ปุ่มอัปโหลดไฟล์ถูกบีบ */
+.file-upload-group input[type="file"] {
+    flex-shrink: 0;
+}
+
+.signature-name-style {
+    border: none;                     /* ไม่มีขอบ */
+    border-bottom: 1px solid #ccc;  /* มีแค่เส้นใต้ */
+    background-color: transparent;    /* พื้นหลังโปร่งใส */
+    text-align: center;               /* ข้อความอยู่กลาง */
+    padding: 4px;
+    font-size: 1em;
+}
+
+.signature-name-style:focus {
+    outline: none;                    /* ไม่มีกรอบตอนคลิก */
+    border-bottom: 5px solid #007bff;/* เส้นใต้เปลี่ยนสีตอนคลิก */
+}
+
+/* =================================================== */
+/* ===      สไตล์ช่องกรอกแบบเส้นประ (ใหม่)         === */
+/* =================================================== */
+
+.dotted-input {
+    background-color: transparent;    /* พื้นหลังโปร่งใส */
+    border: none;                     /* ไม่มีขอบ */
+    border-radius: 0;                 /* ไม่มีขอบมน */
+    box-shadow: none;                 /* ไม่มีเงา */
+    border-bottom: 2px dotted #555; /* สร้างเส้นประด้านล่างให้หนาเล็กน้อย */
+    padding: 4px 2px;                 /* จัดช่องว่างภายในเล็กน้อย */
+    text-align: center;               /* ทำให้ตัวอักษรที่กรอกอยู่กลางเส้น */
+}
+
+/* เมื่อคลิกที่ช่องกรอก ให้เส้นประเปลี่ยนเป็นเส้นทึบสีฟ้า */
+.dotted-input:focus {
+    outline: none;
+    box-shadow: none;
+    border-bottom: 2px solid #007bff;
+}
+
+/* =================================================== */
+/* ===  ดีไซน์สำหรับส่วนลงนามหนังสือยินยอม (ใหม่)   === */
+/* =================================================== */
+
+.consent-signature-area {
+    justify-content: space-around; /* จัดให้แต่ละบล็อกมีระยะห่างเท่าๆ กัน */
+    flex-wrap: wrap; /* ทำให้ขึ้นบรรทัดใหม่บนจอเล็ก */
+    gap: 2rem; /* ระยะห่างกรณีขึ้นบรรทัดใหม่ */
+}
+
+/* ทำให้เส้นประในส่วนนี้สั้นลงเล็กน้อยให้พอดี */
+.consent-signature-area .signature-block {
+    width: 30%;
+    min-width: 280px;
+}
+
+/* =================================================== */
+/* ===   ดีไซน์ปุ่มอัปโหลดไฟล์แบบกำหนดเอง (ใหม่)    === */
+/* =================================================== */
+.file-upload-container {
+    margin-top: 2.5rem;
+    border: 2px dashed #dee2e6;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    background-color: #fdfdfd;
+    transition: background-color 0.2s;
+}
+.file-upload-container:hover {
+    background-color: #f8f9fa;
+}
+
+/* ซ่อนปุ่มอัปโหลดไฟล์แบบดั้งเดิมที่หน้าตาไม่สวย */
+.file-upload-container input[type="file"] {
+    display: none;
+}
+
+/* สร้างปุ่มขึ้นมาใหม่โดยใช้ label */
+.file-upload-label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #74e98d;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    transition: background-color 0.2s;
+    font-weight: 500;
+}
+.file-upload-label:hover {
+    background-color: #37eb64;
+}
+
+/* ส่วนแสดงชื่อไฟล์ที่เลือก */
+.file-upload-filename {
+    display: block;
+    margin-top: 1rem;
+    font-style: italic;
+    color: #070707;
+    font-size: 0.9em;
+}
+
+/* =================================================== */
+/* ===         ดีไซน์สำหรับ Modal Popup (ใหม่)       === */
+/* =================================================== */
+.modal-container {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: #fff;
+    width: 90%;
+    max-width: 700px;
+    max-height: 85vh;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.3s ease-out;
+}
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.modal-close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal-content h2 {
+    padding: 1.5rem 2rem;
+    margin: 0;
+    border-bottom: 1px solid #e9ecef;
+    color: #2c3e50;
+    font-size: 1.5rem;
+}
+.modal-body {
+    padding: 2rem;
+    overflow-y: auto;
+    text-align: left;
+}
+.loading-text {
+    text-align: center;
+    color: #6c757d;
+}
+/* สไตล์สำหรับลิสต์ไฟล์ */
+.file-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+}
+.file-list li {
+    margin-bottom: 0.8rem;
+}
+.file-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: #007bff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    transition: all 0.2s;
+}
+.file-list a:hover {
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+}
+.file-list .fas {
+    color: #dc3545; /* สีไอคอน PDF */
+}
+
